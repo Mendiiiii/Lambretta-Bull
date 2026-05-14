@@ -37,8 +37,8 @@ Plans:
 - [x] 01-01-PLAN.md, Walking Skeleton: cleanup, deps, brand tokens, layout, nav, footer, bike data, homepage listing
 
 **Wave 2** *(blocked on Wave 1 completion)*
-- [ ] 01-02-PLAN.md, Bike detail page: gallery, spec sheet, price anchor, per-bike inquiry CTA, mobile menu, shadcn Textarea
-- [ ] 01-03-PLAN.md, About page: craftsman story (Bulbena, workshop, build, Malaga to Sydney journey), standalone CTA
+- [x] 01-02-PLAN.md, Bike detail page: gallery, spec sheet, price anchor, per-bike inquiry CTA, mobile menu, shadcn Textarea
+- [x] 01-03-PLAN.md, About page: craftsman story (Bulbena, workshop, build, Malaga to Sydney journey), standalone CTA
 
 **Wave 3** *(blocked on Wave 2 completion)*
 - [ ] 01-04-PLAN.md, Contact form: Zod schema, Server Action, Resend integration, contact page wired to per-bike pre-fill
