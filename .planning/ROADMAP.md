@@ -41,7 +41,7 @@ Plans:
 - [x] 01-03-PLAN.md, About page: craftsman story (Bulbena, workshop, build, Malaga to Sydney journey), standalone CTA
 
 **Wave 3** *(blocked on Wave 2 completion)*
-- [ ] 01-04-PLAN.md, Contact form: Zod schema, Server Action, Resend integration, contact page wired to per-bike pre-fill
+- [x] 01-04-PLAN.md, Contact form: Zod schema, Server Action, Resend integration, contact page wired to per-bike pre-fill
 
 **Cross-cutting constraints:**
 - All pages: black background (#0a0a0a), no em dashes, Barlow Condensed headings, price anchor never "POA"
