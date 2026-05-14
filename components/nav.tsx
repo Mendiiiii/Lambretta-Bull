@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { MobileMenu } from '@/components/mobile-menu'
 
 const links = [
   { href: '/', label: 'Bikes' },
@@ -17,7 +18,7 @@ export function Nav() {
         >
           LAMBRE-BULL
         </Link>
-        <ul className="flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-8">
           {links.map(({ href, label }) => (
             <li key={href}>
               <Link
@@ -29,6 +30,7 @@ export function Nav() {
             </li>
           ))}
         </ul>
+        <MobileMenu />
       </div>
     </header>
   )
