@@ -39,6 +39,7 @@ export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
           id="contact-name"
           name="name"
           required
+          maxLength={100}
           aria-invalid={!!errors.name}
           aria-describedby={errors.name ? 'contact-name-error' : undefined}
           className="bg-[rgba(242,242,238,0.06)] border border-[rgba(242,242,238,0.12)] text-[#f2f2ee] rounded-sm focus-visible:border-[#cc2200] focus-visible:ring-1 focus-visible:ring-[#cc2200]"
@@ -55,6 +56,7 @@ export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
           name="email"
           type="email"
           required
+          maxLength={254}
           aria-invalid={!!errors.email}
           aria-describedby={errors.email ? 'contact-email-error' : undefined}
           className="bg-[rgba(242,242,238,0.06)] border border-[rgba(242,242,238,0.12)] text-[#f2f2ee] rounded-sm focus-visible:border-[#cc2200] focus-visible:ring-1 focus-visible:ring-[#cc2200]"
@@ -70,6 +72,7 @@ export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
           id="contact-subject"
           name="subject"
           required
+          maxLength={200}
           defaultValue={defaultSubject ?? ''}
           aria-invalid={!!errors.subject}
           aria-describedby={errors.subject ? 'contact-subject-error' : undefined}
@@ -87,6 +90,7 @@ export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
           name="message"
           required
           rows={6}
+          maxLength={5000}
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? 'contact-message-error' : undefined}
           className="bg-[rgba(242,242,238,0.06)] border border-[rgba(242,242,238,0.12)] text-[#f2f2ee] rounded-sm focus-visible:border-[#cc2200] focus-visible:ring-1 focus-visible:ring-[#cc2200]"
