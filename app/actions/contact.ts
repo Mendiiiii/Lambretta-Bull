@@ -4,7 +4,6 @@ import { Resend } from 'resend'
 import { contactSchema } from '@/lib/validations'
 
 const RESEND_FROM = 'Lambre-Bull <onboarding@resend.dev>'
-const RESEND_TO_DEFAULT = 'imendifp@gmail.com'
 
 export type ContactFormState = {
   status: 'idle' | 'success' | 'error'
@@ -40,13 +39,20 @@ export async function submitContact(
     console.error('[contact-action] RESEND_API_KEY missing')
     return {
       status: 'error',
-      message:
-        'Something went wrong. Try again or email us directly at imendifp@gmail.com.',
+      message: 'Something went wrong. Please try again later.',
+    }
+  }
+
+  const to = process.env.RESEND_TO_EMAIL
+  if (!to) {
+    console.error('[contact-action] RESEND_TO_EMAIL missing')
+    return {
+      status: 'error',
+      message: 'Something went wrong. Please try again later.',
     }
   }
 
   const resend = new Resend(apiKey)
-  const to = process.env.RESEND_TO_EMAIL ?? RESEND_TO_DEFAULT
 
   try {
     await resend.emails.send({
@@ -65,8 +71,7 @@ export async function submitContact(
     console.error('[contact-action]', messageText)
     return {
       status: 'error',
-      message:
-        'Something went wrong. Try again or email us directly at imendifp@gmail.com.',
+      message: 'Something went wrong. Please try again later.',
     }
   }
 }
