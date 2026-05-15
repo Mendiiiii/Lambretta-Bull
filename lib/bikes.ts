@@ -36,6 +36,10 @@ export const bikes: Bike[] = [
   },
 ]
 
+export function getAvailableBikes(): Bike[] {
+  return bikes.filter((b) => b.available)
+}
+
 export function getBike(id: string): Bike | undefined {
   return bikes.find((b) => b.id === id)
 }

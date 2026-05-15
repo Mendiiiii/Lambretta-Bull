@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { cacheLife } from 'next/cache'
-import { bikes, getBike } from '@/lib/bikes'
+import { getAvailableBikes, getBike } from '@/lib/bikes'
 import { BikeGallery } from '@/components/bike-gallery'
 import { SpecSheet } from '@/components/spec-sheet'
 import { PriceAnchor } from '@/components/price-anchor'
 
 export async function generateStaticParams() {
-  return bikes.map((b) => ({ id: b.id }))
+  return getAvailableBikes().map((b) => ({ id: b.id }))
 }
 
 export default async function BikePage({
@@ -20,7 +20,7 @@ export default async function BikePage({
 
   const { id } = await params
   const bike = getBike(id)
-  if (!bike) notFound()
+  if (!bike || !bike.available) notFound()
 
   const inquiryHref = `/contact?subject=${encodeURIComponent(`Inquiry: ${bike.name}`)}`
 

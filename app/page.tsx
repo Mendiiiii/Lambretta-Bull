@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { cacheLife } from 'next/cache'
-import { bikes } from '@/lib/bikes'
+import { getAvailableBikes } from '@/lib/bikes'
 
 function formatPrice(priceAUD: number): string {
   if (priceAUD <= 0) return 'Price TBA'
@@ -20,13 +20,13 @@ export default async function HomePage() {
         </p>
       </section>
 
-      {bikes.length === 0 ? (
+      {getAvailableBikes().length === 0 ? (
         <p className="text-[#888880]">
           No bikes available right now. New builds are underway, get in touch to be first to know.
         </p>
       ) : (
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {bikes.map((bike) => (
+          {getAvailableBikes().map((bike) => (
             <li key={bike.id}>
               <Link
                 href={`/bikes/${bike.id}`}
