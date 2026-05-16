@@ -612,17 +612,19 @@ useEffect(() => {
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Configurator options: how many placeholder options per category?**
    - What we know: D-05 says placeholders are acceptable; data will be replaced by Alfonso before launch.
    - What's unclear: Whether 2 or 3 placeholder options per category is more useful for UI testing.
    - Recommendation: Use 2-3 placeholders per category. Enough to show the grid layout without cluttering. The exact count has no technical consequence.
+   - RESOLVED: 2-3 placeholder options per category (plans implement 2 per category)
 
 2. **Environment variables: RESEND_TO_EMAIL recipient for configure inquiries**
    - What we know: `RESEND_TO_EMAIL` already set for the contact form. The configure action can reuse it.
    - What's unclear: Whether the seller wants configurator inquiries sent to a different address.
    - Recommendation: Reuse `RESEND_TO_EMAIL` for now. The planner should note this as a config decision, not a code change.
+   - RESOLVED: Reuse existing RESEND_TO_EMAIL env var -- seller can configure a different address via env var before launch if needed
 
 ---
 

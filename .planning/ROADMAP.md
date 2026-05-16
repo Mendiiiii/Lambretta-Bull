@@ -58,7 +58,14 @@ Plans:
   2. User can choose parts by category (engine, discs, sourcing, handmade vs. England-sourced) across all available categories
   3. User can review their complete configuration summary before submitting
   4. User can submit the full build specification as a structured inquiry and receive confirmation that it was sent, the email received by the seller includes the complete configuration with no data lost
-**Plans**: TBD
+**Plans:** 3 plans
+
+**Wave 1** *(parallel — no file conflicts)*
+- [ ] 02-01-PLAN.md, Data foundation: lib/configurator.ts (types + placeholder options), configSchema in lib/validations.ts, Custom build nav link
+- [ ] 02-02-PLAN.md, Server Action: app/actions/configure.ts (submitInquiry with .bind() signature, Zod validation, Resend plain-text email)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+- [ ] 02-03-PLAN.md, Wizard UI: components/configurator-wizard.tsx (5-step wizard, ARIA cards, free nav, success state), app/configure/page.tsx — includes human verification checkpoint
 
 ### Phase 3: Gated Content and Trust Infrastructure
 **Goal**: Regulatory transparency and build process video publish once the external verification they depend on is complete
@@ -82,5 +89,5 @@ Phases execute in numeric order: 1 -> 2 -> 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Brand, Listings, and Contact | 1/4 | In Progress|  |
-| 2. Configurator and Inquiry Integration | 0/TBD | Not started | - |
+| 2. Configurator and Inquiry Integration | 0/3 | Not started | - |
 | 3. Gated Content and Trust Infrastructure | 0/TBD | Not started | - |
