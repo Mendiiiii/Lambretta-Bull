@@ -62,7 +62,7 @@ Plans:
 
 **Wave 1** *(parallel — no file conflicts)*
 - [x] 02-01-PLAN.md, Data foundation: lib/configurator.ts (types + placeholder options), configSchema in lib/validations.ts, Custom build nav link
-- [ ] 02-02-PLAN.md, Server Action: app/actions/configure.ts (submitInquiry with .bind() signature, Zod validation, Resend plain-text email)
+- [x] 02-02-PLAN.md, Server Action: app/actions/configure.ts (submitInquiry with .bind() signature, Zod validation, Resend plain-text email)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 - [ ] 02-03-PLAN.md, Wizard UI: components/configurator-wizard.tsx (5-step wizard, ARIA cards, free nav, success state), app/configure/page.tsx — includes human verification checkpoint
