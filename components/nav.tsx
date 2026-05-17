@@ -3,6 +3,7 @@ import { MobileMenu } from '@/components/mobile-menu'
 
 const links = [
   { href: '/', label: 'Bikes' },
+  { href: '/configure', label: 'Custom build' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ]
