@@ -32,7 +32,7 @@ export const bikes: Bike[] = [
     photos: [
       { src: '/bikes/placeholder/hero.jpg', alt: '1966 TV 200, left side profile (placeholder)' },
     ],
-    available: false,
+    available: true,
   },
 ]
 
