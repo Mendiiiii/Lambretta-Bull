@@ -79,7 +79,11 @@ Plans:
 **Flags:**
 - BRAND-02: Import/registration regulatory content requires live verification against infrastructure.gov.au, abf.gov.au, service.nsw.gov.au, and written asbestos documentation from Bulbena. Do not publish until verified.
 - BIKE-05: Content-gated. Cannot ship until build process video exists and is ready to embed. Phase 3 may be split or reordered depending on which content is available first.
-**Plans**: TBD
+**Plans:** 2 plans
+
+**Wave 1** *(parallel, no file conflicts)*
+- [ ] 03-01-PLAN.md, /import static page slice: shadcn Accordion install, page with 4-step process + 5-item FAQ, nav wiring on desktop and mobile (BRAND-02)
+- [ ] 03-02-PLAN.md, BuildVideo component slice: TDD unit tests, conditional iframe Server Component, About page activation gate (BIKE-05)
 
 ## Progress
 
@@ -90,4 +94,4 @@ Phases execute in numeric order: 1 -> 2 -> 3
 |-------|----------------|--------|-----------|
 | 1. Brand, Listings, and Contact | 1/4 | In Progress|  |
 | 2. Configurator and Inquiry Integration | 0/3 | Not started | - |
-| 3. Gated Content and Trust Infrastructure | 0/TBD | Not started | - |
+| 3. Gated Content and Trust Infrastructure | 0/2 | Not started | - |
