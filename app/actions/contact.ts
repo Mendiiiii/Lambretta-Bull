@@ -54,24 +54,24 @@ export async function submitContact(
 
   const resend = new Resend(apiKey)
 
-  try {
-    await resend.emails.send({
-      from: RESEND_FROM,
-      to: [to],
-      replyTo: parsed.data.email,
-      subject: parsed.data.subject,
-      text: `From: ${parsed.data.name} <${parsed.data.email}>\n\n${parsed.data.message}`,
-    })
-    return {
-      status: 'success',
-      message: "Message sent. We'll be in touch within 2 business days.",
-    }
-  } catch (error) {
-    const messageText = error instanceof Error ? error.message : 'Unknown error'
-    console.error('[contact-action]', messageText)
+  const { error } = await resend.emails.send({
+    from: RESEND_FROM,
+    to: [to],
+    replyTo: parsed.data.email,
+    subject: parsed.data.subject,
+    text: `From: ${parsed.data.name} <${parsed.data.email}>\n\n${parsed.data.message}`,
+  })
+
+  if (error) {
+    console.error('[contact-action]', error)
     return {
       status: 'error',
       message: 'Something went wrong. Please try again later.',
     }
+  }
+
+  return {
+    status: 'success',
+    message: "Message sent. We'll be in touch within 2 business days.",
   }
 }

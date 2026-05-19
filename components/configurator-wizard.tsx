@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Separator } from '@/components/ui/separator'
+import Link from 'next/link'
 import { submitInquiry, type ConfigFormState } from '@/app/actions/configure'
 import type { ConfiguratorOptions, ConfigSelections } from '@/lib/configurator'
 import { getOptionLabel } from '@/lib/configurator'
@@ -69,6 +70,7 @@ export function ConfiguratorWizard({ options }: { options: ConfiguratorOptions }
   const [currentStep, setCurrentStep] = useState(1)
   const [selections, setSelections] = useState<ConfigSelections>(initialSelections)
   const [direction, setDirection] = useState<'forward' | 'backward'>('forward')
+  const [returnToStep, setReturnToStep] = useState<number | null>(null)
   const successRef = useRef<HTMLHeadingElement>(null)
 
   // .bind() called INSIDE component body — captures current selections on every render
@@ -82,19 +84,26 @@ export function ConfiguratorWizard({ options }: { options: ConfiguratorOptions }
     }
   }, [state.status])
 
-  function goToStep(step: number) {
+  function goToStep(step: number, from?: number) {
     setDirection(step > currentStep ? 'forward' : 'backward')
     setCurrentStep(step)
-    // NEVER reset selections here — free navigation (D-03) only changes current step
+    if (from !== undefined) setReturnToStep(from)
   }
 
   function handleNext() {
     setDirection('forward')
-    setCurrentStep((s) => s + 1)
+    if (returnToStep !== null) {
+      const dest = returnToStep
+      setReturnToStep(null)
+      setCurrentStep(dest)
+    } else {
+      setCurrentStep((s) => s + 1)
+    }
   }
 
   function handleBack() {
     setDirection('backward')
+    setReturnToStep(null)
     setCurrentStep((s) => s - 1)
   }
 
@@ -137,13 +146,13 @@ export function ConfiguratorWizard({ options }: { options: ConfiguratorOptions }
           <Separator className="bg-[rgba(242,242,238,0.12)]" />
           <p className="text-sm text-[#888880]">AU$18,000 – AU$25,000</p>
         </div>
-        <a
+        <Link
           href="/"
           className="mt-8 inline-block text-sm font-black uppercase tracking-widest text-[#cc2200] hover:text-[#a81c00] transition-colors"
           style={{ fontFamily: 'var(--font-barlow-condensed)' }}
         >
-          ← Back to Bikes
-        </a>
+          Back to Bikes
+        </Link>
       </div>
     )
   }
@@ -246,7 +255,7 @@ export function ConfiguratorWizard({ options }: { options: ConfiguratorOptions }
                           </span>
                           <button
                             type="button"
-                            onClick={() => goToStep(stepForCat)}
+                            onClick={() => goToStep(stepForCat, 5)}
                             className="text-sm uppercase tracking-widest text-[#cc2200] hover:text-[#a81c00] transition-colors"
                             style={{ fontFamily: 'var(--font-barlow-condensed)' }}
                           >
@@ -357,6 +366,9 @@ export function ConfiguratorWizard({ options }: { options: ConfiguratorOptions }
           {currentStep < 5 && (() => {
             const category = STEP_CATEGORIES[currentStep]
             const isDisabled = selections[category] === null
+            const nextLabel = returnToStep !== null
+              ? 'BACK TO SUMMARY'
+              : `NEXT: ${STEP_NAMES[currentStep + 1]} →`
             return (
               <button
                 type="button"
@@ -368,7 +380,7 @@ export function ConfiguratorWizard({ options }: { options: ConfiguratorOptions }
                 )}
                 style={{ fontFamily: 'var(--font-barlow-condensed)' }}
               >
-                NEXT: {STEP_NAMES[currentStep + 1]} →
+                {nextLabel}
               </button>
             )
           })()}
@@ -378,6 +390,9 @@ export function ConfiguratorWizard({ options }: { options: ConfiguratorOptions }
           {currentStep < 5 && (() => {
             const category = STEP_CATEGORIES[currentStep]
             const isDisabled = selections[category] === null
+            const nextLabel = returnToStep !== null
+              ? 'BACK TO SUMMARY'
+              : `NEXT: ${STEP_NAMES[currentStep + 1]} →`
             return (
               <button
                 type="button"
@@ -389,7 +404,7 @@ export function ConfiguratorWizard({ options }: { options: ConfiguratorOptions }
                 )}
                 style={{ fontFamily: 'var(--font-barlow-condensed)' }}
               >
-                NEXT: {STEP_NAMES[currentStep + 1]} →
+                {nextLabel}
               </button>
             )
           })()}

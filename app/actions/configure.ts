@@ -75,24 +75,24 @@ export async function submitInquiry(
 
   const resend = new Resend(apiKey)
 
-  try {
-    await resend.emails.send({
-      from: RESEND_FROM,
-      to: [to],
-      replyTo: parsed.data.email,
-      subject: `Custom Build Inquiry: ${chassisLabel}`,
-      text: emailText,
-    })
-    return {
-      status: 'success',
-      message: "Inquiry sent. We'll be in touch shortly.",
-    }
-  } catch (error) {
-    const messageText = error instanceof Error ? error.message : 'Unknown error'
-    console.error('[configure-action]', messageText)
+  const { error } = await resend.emails.send({
+    from: RESEND_FROM,
+    to: [to],
+    replyTo: parsed.data.email,
+    subject: `Custom Build Inquiry: ${chassisLabel}`,
+    text: emailText,
+  })
+
+  if (error) {
+    console.error('[configure-action]', error)
     return {
       status: 'error',
       message: 'Something went wrong. Please try again or email us directly.',
     }
+  }
+
+  return {
+    status: 'success',
+    message: "Inquiry sent. We'll be in touch shortly.",
   }
 }
