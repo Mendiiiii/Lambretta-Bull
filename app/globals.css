@@ -80,3 +80,13 @@
     #f2f2ee 0% 50%
   ) 0 0 / 16px 16px;
 }
+
+@keyframes accordion-down {
+  from { height: 0; overflow: hidden; }
+  to   { height: var(--accordion-panel-height); overflow: hidden; }
+}
+
+@keyframes accordion-up {
+  from { height: var(--accordion-panel-height); overflow: hidden; }
+  to   { height: 0; overflow: hidden; }
+}

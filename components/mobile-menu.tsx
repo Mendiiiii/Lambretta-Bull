@@ -30,6 +30,7 @@ export function MobileMenu() {
           role="dialog"
           aria-modal="true"
           aria-label="Site navigation"
+          onKeyDown={(e) => { if (e.key === 'Escape') setOpen(false) }}
           className="fixed inset-0 z-50 bg-[#0a0a0a] flex flex-col items-center justify-center gap-8"
         >
           <button
