@@ -82,8 +82,8 @@ Plans:
 **Plans:** 2 plans
 
 **Wave 1** *(parallel, no file conflicts)*
-- [ ] 03-01-PLAN.md, /import static page slice: shadcn Accordion install, page with 4-step process + 5-item FAQ, nav wiring on desktop and mobile (BRAND-02)
-- [ ] 03-02-PLAN.md, BuildVideo component slice: TDD unit tests, conditional iframe Server Component, About page activation gate (BIKE-05)
+- [x] 03-01-PLAN.md, /import static page slice: shadcn Accordion install, page with 4-step process + 5-item FAQ, nav wiring on desktop and mobile (BRAND-02)
+- [x] 03-02-PLAN.md, BuildVideo component slice: TDD unit tests, conditional iframe Server Component, About page activation gate (BIKE-05)
 
 ## Progress
 
