@@ -1,9 +1,12 @@
 import Link from 'next/link'
 import { cacheLife } from 'next/cache'
+import { BuildVideo } from '@/components/build-video'
 
 export default async function AboutPage() {
   'use cache'
   cacheLife('max')
+
+  const videoUrl: string | undefined = undefined // set to a YouTube or Vimeo embed URL to activate the build process video
 
   return (
     <article className="max-w-3xl mx-auto px-4 md:px-8 py-16">
@@ -45,6 +48,12 @@ export default async function AboutPage() {
           Full regulatory detail on the import and registration pathway is published in a separate guide later in the rollout.
         </p>
       </section>
+
+      {videoUrl && (
+        <section className="mb-12">
+          <BuildVideo src={videoUrl} />
+        </section>
+      )}
 
       <section className="border-t border-[rgba(242,242,238,0.12)] pt-12 mt-12 flex flex-col gap-4">
         <h2>Want a build of your own?</h2>
