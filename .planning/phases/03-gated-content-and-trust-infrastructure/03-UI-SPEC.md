@@ -58,15 +58,16 @@ Source: `app/about/page.tsx`, `components/mobile-menu.tsx` (verified in codebase
 |------|------|--------|-------------|------|-------|
 | Category label | 10px | 900 (black) | 1.2 | Inter | #cc2200, uppercase, tracking-widest |
 | Body (regular and muted) | 16px | 400 (regular) | relaxed (1.625) | Inter | #f2f2ee (regular) / #888880 (muted) |
+| Lead / intro paragraph | 18px (text-lg) | 400 (regular) | relaxed (1.625) | Inter | #f2f2ee |
 | h2 (section headings, FAQ triggers, step titles) | 30px (text-3xl) | 900 (black) | 1.2 | Barlow Condensed | #f2f2ee |
 | h1 (page title) | 48px (text-5xl) | 900 (black) | 1 (leading-none) | Barlow Condensed | #f2f2ee |
 
 Notes:
-- Exactly two declared weights: 400 (body) and 900 (all headings and category label).
+- Exactly two declared weights: 400 (body and lead) and 900 (all headings and category label).
 - No italic, no medium weight, no semibold. This is a brand constraint, not a default.
-- Muted body copy (secondary text, footnotes, activation hints) uses the same 16px/400 size and weight as regular body; color #888880 provides the visual distinction.
-- Lead/intro paragraphs use 16px/400 with leading-relaxed (1.625); no separate size is needed because the category label and h1 hierarchy already establishes prominence above the intro.
-- h3 is folded into h2 (30px/900/Barlow Condensed). Step titles and FAQ triggers use the h2 style. This is intentional: at this content scale a two-level heading hierarchy (h1 + h2) is sufficient.
+- Lead/intro paragraph is 18px — standard practice for editorial pages. Creates visual hierarchy between the intro and the step body copy without adding a heading level.
+- Muted body copy (secondary text, footnotes, activation hints) uses 16px/400; color #888880 provides the visual distinction from regular body.
+- h3 is folded into h2 (30px/900/Barlow Condensed). Step titles and FAQ triggers use the h2 style. At this content scale a two-level heading hierarchy (h1 + h2) is sufficient.
 - Category label weight is 900 (font-black). The 10px size, uppercase, tracking-widest, and #cc2200 color together distinguish it from headings without requiring a separate weight.
 - Step numbers in the process section use the same category label style (10px, 900, uppercase, #cc2200).
 
@@ -136,7 +137,7 @@ Structure (top to bottom):
   <header mb-12>
     <p [category label style]>Import guide</p>
     <h1>Getting your Lambretta to Australia</h1>
-    <p [body text, 16px]>[intro paragraph — Malaga-to-Sydney framing]</p>
+    <p [lead text, 18px]>[intro paragraph — Malaga-to-Sydney framing]</p>
   </header>
 
   <section mb-12> [Step 1: ADR exemption]

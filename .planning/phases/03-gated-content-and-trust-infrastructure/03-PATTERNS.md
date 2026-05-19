@@ -1,0 +1,330 @@
+# Phase 3: Gated Content and Trust Infrastructure - Pattern Map
+
+**Mapped:** 2026-05-19
+**Files analyzed:** 5 (3 new, 2 modified)
+**Analogs found:** 5 / 5
+
+## File Classification
+
+| New/Modified File | Role | Data Flow | Closest Analog | Match Quality |
+|-------------------|------|-----------|----------------|---------------|
+| `app/import/page.tsx` | page (Server Component) | static render | `app/about/page.tsx` | exact |
+| `components/build-video.tsx` | component | conditional render | `components/price-anchor.tsx` | role-match |
+| `components/ui/accordion.tsx` | component (generated) | event-driven (client) | `components/ui/button.tsx` (shadcn pattern) | role-match |
+| `components/nav.tsx` | component (Server Component) | request-response | `components/nav.tsx` itself | self (modification) |
+| `components/mobile-menu.tsx` | component (`'use client'`) | event-driven | `components/mobile-menu.tsx` itself | self (modification) |
+| `lib/__tests__/build-video.test.ts` | test | — | `lib/__tests__/validations.test.ts` | role-match |
+
+---
+
+## Pattern Assignments
+
+### `app/import/page.tsx` (page, static render)
+
+**Analog:** `app/about/page.tsx`
+
+**Imports pattern** (lines 1-2):
+```typescript
+import Link from 'next/link'
+import { cacheLife } from 'next/cache'
+```
+
+**Cache/static render pattern** (lines 4-7):
+```typescript
+export default async function ImportPage() {
+  'use cache'
+  cacheLife('max')
+  // ...
+}
+```
+
+**Root element pattern** (lines 9):
+```typescript
+<article className="max-w-3xl mx-auto px-4 md:px-8 py-16">
+```
+
+**Header section pattern** (lines 10-16):
+```typescript
+<header className="mb-12">
+  <p className="text-[10px] font-semibold uppercase tracking-widest text-[#cc2200]">The craftsman</p>
+  <h1 className="mt-2">Bulbena builds them. We bring them to Australia.</h1>
+  <p className="mt-6 text-lg text-[#f2f2ee] leading-relaxed">
+    Lambre-Bull is the working name of a partnership...
+  </p>
+</header>
+```
+
+**Content section pattern** (lines 18-23):
+```typescript
+<section className="mb-12">
+  <h2>The maker</h2>
+  <p className="mt-4 text-[#f2f2ee] leading-relaxed">
+    Body text here.
+  </p>
+</section>
+```
+
+**Section divider pattern** (line 49):
+```typescript
+<section className="border-t border-[rgba(242,242,238,0.12)] pt-12 mt-12 flex flex-col gap-4">
+```
+
+**CTA link pattern** (lines 54-60):
+```typescript
+<Link
+  href={`/contact?subject=${encodeURIComponent('Inquiry: Custom Build')}`}
+  className="self-start inline-flex items-center justify-center bg-[#cc2200] hover:bg-[#a81c00] text-[#f2f2ee] uppercase tracking-widest font-black px-6 py-3 rounded-sm transition-colors min-h-[44px]"
+  style={{ fontFamily: 'var(--font-barlow-condensed)' }}
+>
+  Ask About a Build
+</Link>
+```
+
+**Muted secondary text pattern** (lines 44-46):
+```typescript
+<p className="mt-4 text-[#888880] text-sm">
+  Full regulatory detail on the import and registration pathway is published in a separate guide later in the rollout.
+</p>
+```
+
+**Accordion addition** — the FAQ section is the last content section before the CTA. Import and use after `npx shadcn add accordion` creates `components/ui/accordion.tsx`. Read that generated file to confirm exact prop names before writing JSX.
+
+---
+
+### `components/build-video.tsx` (component, conditional render)
+
+**Analog:** `components/price-anchor.tsx`
+
+The `price-anchor.tsx` demonstrates the conditional-return-early pattern for a prop-gated Server Component: accept a typed prop, evaluate it, return early with an alternative render (or null) when the condition is not met.
+
+**Prop-conditional return pattern** (lines 1-11 of `components/price-anchor.tsx`):
+```typescript
+export function PriceAnchor({ priceAUD }: { priceAUD: number }) {
+  if (priceAUD <= 0) {
+    return (
+      <p ...>Price TBA</p>
+    )
+  }
+  // ... main render
+}
+```
+
+**For `BuildVideo`, invert to null-guard:**
+```typescript
+type BuildVideoProps = {
+  src: string
+}
+
+export function BuildVideo({ src }: BuildVideoProps) {
+  if (!src) return null
+
+  return (
+    <div className="relative aspect-video w-full overflow-hidden rounded-sm">
+      <iframe
+        src={src}
+        title="Build process video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        loading="lazy"
+        className="absolute inset-0 w-full h-full"
+      />
+    </div>
+  )
+}
+```
+
+**No `'use client'` directive** — the `<iframe>` is pure HTML; no React hooks required. The component is a Server Component. Mirror `checkerboard-stripe.tsx` (no directive, no imports, pure JSX function export) for the minimal component skeleton.
+
+**Caller pattern in `app/about/page.tsx`** (after modification):
+```typescript
+const videoUrl: string | undefined = undefined // set to embed URL string to activate
+
+{videoUrl && <BuildVideo src={videoUrl} />}
+```
+
+---
+
+### `components/ui/accordion.tsx` (component, generated by CLI)
+
+**No codebase analog** — this file is created by `npx shadcn add accordion`. It must not be hand-rolled.
+
+**Pre-condition:** Run `npx shadcn add accordion` first. This creates `components/ui/accordion.tsx` wrapping `@base-ui/react/accordion` primitives. Read the generated file before writing any JSX that imports from it, to confirm exact exported names and prop signatures. The project uses `style: "base-nova"` (`components.json`), which means the Accordion primitive comes from `@base-ui/react`, not Radix UI.
+
+**Import pattern to use in `/import` page** (after install — exact names TBC from generated file):
+```typescript
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from '@/components/ui/accordion'
+```
+
+**Usage pattern in `/import` page FAQ section:**
+```typescript
+<section className="border-t border-[rgba(242,242,238,0.12)] pt-12 mt-12">
+  <h2 className="mb-6">Frequently asked questions</h2>
+  <Accordion>
+    <AccordionItem value="faq-1">
+      <AccordionTrigger>Do I need to handle import duty myself?</AccordionTrigger>
+      <AccordionContent>
+        No. Customs and duty are handled on arrival before the bike reaches you.
+      </AccordionContent>
+    </AccordionItem>
+    {/* 3-5 items total */}
+  </Accordion>
+</section>
+```
+
+---
+
+### `components/nav.tsx` (modification, Server Component, request-response)
+
+**Self-analog** — modification of existing file.
+
+**Current links array** (lines 4-9):
+```typescript
+const links = [
+  { href: '/', label: 'Bikes' },
+  { href: '/configure', label: 'Custom build' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+]
+```
+
+**Target state** — insert before Contact:
+```typescript
+const links = [
+  { href: '/', label: 'Bikes' },
+  { href: '/configure', label: 'Custom build' },
+  { href: '/about', label: 'About' },
+  { href: '/import', label: 'How it gets to you' },
+  { href: '/contact', label: 'Contact' },
+]
+```
+
+No other changes. The desktop nav is `hidden md:flex items-center gap-8` (line 22) — flex gap handles label length naturally.
+
+---
+
+### `components/mobile-menu.tsx` (modification, `'use client'`, event-driven)
+
+**Self-analog** — modification of existing file.
+
+**Current links array** (lines 7-12):
+```typescript
+const links = [
+  { href: '/', label: 'Bikes' },
+  { href: '/configure', label: 'Custom build' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+]
+```
+
+**Target state** — insert before Contact:
+```typescript
+const links = [
+  { href: '/', label: 'Bikes' },
+  { href: '/configure', label: 'Custom build' },
+  { href: '/about', label: 'About' },
+  { href: '/import', label: 'How it gets to you' },
+  { href: '/contact', label: 'Contact' },
+]
+```
+
+**Mobile label note:** Each link renders at `text-5xl font-black` (line 48). "How it gets to you" is five words and will be wider than existing entries. After implementing, verify at 375px viewport width (iPhone SE). If wrapping is visually disruptive, the executor may use a shorter alias (e.g., "Import guide") for the mobile label only — this is within Claude's discretion per CONTEXT.md.
+
+---
+
+### `lib/__tests__/build-video.test.ts` (test, conditional render)
+
+**Analog:** `lib/__tests__/validations.test.ts`
+
+**Test file structure** (lines 1-5):
+```typescript
+import { describe, it, expect } from 'vitest'
+// import the subject under test
+```
+
+**Test pattern** (describe/it/expect):
+```typescript
+describe('BuildVideo', () => {
+  it('returns null when src is empty', () => {
+    // render or inspect JSX return value
+    // expect null
+  })
+
+  it('renders an iframe when src is a URL string', () => {
+    // render with src="https://www.youtube.com/embed/..."
+    // expect iframe to be present
+  })
+})
+```
+
+**Note on test approach:** `BuildVideo` is a Server Component returning JSX. The simplest test is to call the function directly and inspect the returned value, since it is a pure function with no async behavior and no hooks. No jsdom or React test renderer needed for this:
+```typescript
+import { BuildVideo } from '@/components/build-video'
+
+it('returns null when src is empty', () => {
+  expect(BuildVideo({ src: '' })).toBeNull()
+})
+
+it('renders iframe element when src is a URL', () => {
+  const result = BuildVideo({ src: 'https://www.youtube.com/embed/abc123' })
+  expect(result).not.toBeNull()
+  // JSX type check: result.type === 'div' (the wrapper)
+})
+```
+
+---
+
+## Shared Patterns
+
+### Typographic scale (apply to all new content)
+**Source:** `app/globals.css` `@layer base` + `app/about/page.tsx` as usage reference
+
+```
+Category label:  text-[10px] font-semibold uppercase tracking-widest text-[#cc2200]
+h1:              text-5xl font-black tracking-tight leading-none (Barlow Condensed, set globally)
+h2:              text-3xl font-black tracking-tight (Barlow Condensed)
+h3:              text-xl font-black (Barlow Condensed)
+Body text:       text-[#f2f2ee] leading-relaxed
+Muted text:      text-[#888880] text-sm
+Section divider: border-t border-[rgba(242,242,238,0.12)] pt-12 mt-12
+```
+
+### Brand color tokens (apply to all new content)
+**Source:** `app/globals.css`
+
+```css
+--color-brand-black:   #0a0a0a   /* page background */
+--color-brand-white:   #f2f2ee   /* primary text */
+--color-brand-red:     #cc2200   /* accents, CTAs, category labels */
+--color-brand-checker: #1a1a1a   /* card/panel backgrounds */
+--muted-foreground:    #888880   /* secondary/muted text */
+--border:              rgba(242, 242, 238, 0.12)  /* section dividers, card borders */
+```
+
+### No em dashes (apply everywhere)
+**Source:** `CLAUDE.md` global constraint + confirmed in `app/about/page.tsx` copy
+
+No `—` characters anywhere in content, placeholder text, or comments. Use comma, period, or rephrase.
+
+### Server Component default (apply to new page and video component)
+**Source:** `app/about/page.tsx`
+
+No `'use client'` on `app/import/page.tsx` or `components/build-video.tsx`. The shadcn Accordion component handles its own client boundary internally via Base UI primitives.
+
+---
+
+## No Analog Found
+
+All files in this phase have clear analogs or are self-modifications. No files without analog.
+
+---
+
+## Metadata
+
+**Analog search scope:** `app/`, `components/`, `lib/__tests__/`
+**Files scanned:** 9 (`app/about/page.tsx`, `components/nav.tsx`, `components/mobile-menu.tsx`, `components/price-anchor.tsx`, `components/spec-sheet.tsx`, `components/checkerboard-stripe.tsx`, `components/ui/button.tsx` conceptually, `lib/__tests__/validations.test.ts`, `lib/__tests__/configurator.test.ts`)
+**Pattern extraction date:** 2026-05-19
