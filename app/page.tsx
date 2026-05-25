@@ -16,7 +16,10 @@ export default async function HomePage() {
       <section className="mb-16">
         <h1 className="text-5xl md:text-6xl">Handcrafted Lambrettas, Spain to Australia.</h1>
         <p className="mt-4 max-w-2xl text-[#f2f2ee] text-lg">
-          One-of-one builds from the Bulbena workshop in Malaga. Browse current bikes or get in touch about a custom build.
+          One-of-one builds from the Artefactory workshop in Madrid.
+        </p>
+        <p className="max-w-2xl text-[#f2f2ee] text-lg">
+          Browse current bikes or get in touch about a custom build.
         </p>
       </section>
 

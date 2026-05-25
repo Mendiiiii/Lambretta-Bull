@@ -8,7 +8,7 @@ function ConfigureContent() {
       <header className="mb-10">
         <h1 className="uppercase">BUILD YOUR LAMBRE-BULL</h1>
         <p className="mt-2 text-sm text-[#888880]">
-          Specify your chassis, engine, and components. We build it by hand in Malaga.
+          Specify your chassis, engine, and components. We build it by hand in Madrid.
         </p>
         <p className="mt-1 text-sm text-[#888880]">from AU$18,000 to AU$25,000</p>
       </header>

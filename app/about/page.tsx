@@ -28,7 +28,7 @@ export default async function AboutPage() {
       <section className="mb-12">
         <h2>The workshop</h2>
         <p className="mt-4 text-[#f2f2ee] leading-relaxed">
-          The workshop sits in Malaga on the southern coast of Spain. It is a small space, exactly the size you need to build one bike well, not the size you would use to ship volume. Tools are organised by job, not by category. The lights stay on past sunset most days of the week.
+          The workshop is Artefactory, Alfonso Bulbena's studio in Madrid. It is a small space, exactly the size you need to build one bike well, not the size you would use to ship volume. Tools are organised by job, not by category. The lights stay on past sunset most days of the week.
         </p>
       </section>
 
@@ -42,7 +42,7 @@ export default async function AboutPage() {
       <section className="mb-12">
         <h2>The journey to Sydney</h2>
         <p className="mt-4 text-[#f2f2ee] leading-relaxed">
-          From Malaga the bike is crated and shipped by sea to an Australian port. Customs and import duty are handled on arrival. The bike clears the road-worthy and historic registration process in New South Wales, then it is delivered to the buyer in Sydney. The whole crossing takes a few months end to end.
+          From Madrid the bike is crated and shipped by sea to an Australian port. Customs and import duty are handled on arrival. The bike clears the road-worthy and historic registration process in New South Wales, then it is delivered to the buyer in Sydney. The whole crossing takes a few months end to end.
         </p>
         <p className="mt-4 text-[#888880] text-sm">
           Full regulatory detail on the import and registration pathway is published in a separate guide later in the rollout.

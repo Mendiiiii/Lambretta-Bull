@@ -17,7 +17,7 @@ export default async function ImportPage() {
         <p className="text-[10px] font-semibold uppercase tracking-widest text-[#cc2200]">Import guide</p>
         <h1 className="mt-2">Getting your Lambretta to Australia</h1>
         <p className="mt-6 text-lg text-[#f2f2ee] leading-relaxed">
-          We build in Spain and ship to Australia. The process involves import clearance, a road-worthy inspection, and historic registration before the bike reaches you. We coordinate every step from Malaga to your door, so you are not dealing with customs forms or government offices.
+          We build in Spain and ship to Australia. The process involves import clearance, a road-worthy inspection, and historic registration before the bike reaches you. We coordinate every step from Madrid to your door, so you are not dealing with customs forms or government offices.
         </p>
       </header>
 
@@ -33,7 +33,7 @@ export default async function ImportPage() {
         <p className="text-[10px] font-semibold uppercase tracking-widest text-[#cc2200]">Step 02</p>
         <h2 className="mt-2">Import and customs</h2>
         <p className="mt-4 text-[#f2f2ee] leading-relaxed">
-          The bike is crated in Malaga and shipped by sea to an Australian port. Import duty and customs clearance are handled on arrival by our import agent. You are not required to lodge any paperwork with Australian Border Force or any other agency. We manage the broker, the duty payment, and the port release. Once the crate clears customs, we arrange delivery to the inspection site for the next step.
+          The bike is crafted in Madrid and shipped by sea to an Australian port. Import duty and customs clearance are handled on arrival by our import agent. You are not required to lodge any paperwork with Australian Border Force or any other agency. We manage the broker, the duty payment, and the port release. Once the crate clears customs, we arrange delivery to the inspection site for the next step.
         </p>
       </section>
 

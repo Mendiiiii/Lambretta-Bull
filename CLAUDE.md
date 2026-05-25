@@ -11,7 +11,7 @@ Lambre-Bull is a showcase and custom configurator website for selling handcrafte
 
 ### Constraints
 
-- **Geography:** Manufacturing in Spain, shipping from Malaga, primary market is Australia
+- **Geography:** Manufacturing in Madrid (Artefactory, Alfonso Bulbena's workshop), primary market is Australia
 - **Inventory size:** Very small (1-5 bikes) — no need for filtering, search, or pagination at launch
 - **Tech stack:** Existing repo is Next.js — likely to continue with that
 - **Timeline:** No hard deadline

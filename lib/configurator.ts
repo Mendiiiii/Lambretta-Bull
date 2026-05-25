@@ -32,7 +32,7 @@ export const configuratorOptions: ConfiguratorOptions = {
     { id: 'drum-both', label: 'Drum Both Ends', description: 'Placeholder — to be updated with Alfonso\'s data' },
   ],
   sourcing: [
-    { id: 'handbuilt', label: 'Handbuilt', description: 'Components built by hand in Malaga' },
+    { id: 'handbuilt', label: 'Handbuilt', description: 'Components built by hand in Madrid' },
     { id: 'england-sourced', label: 'England-sourced', description: 'Original parts sourced from England' },
   ],
 }
