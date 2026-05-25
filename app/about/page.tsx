@@ -49,6 +49,13 @@ export default async function AboutPage() {
         </p>
       </section>
 
+      <section className="mb-12">
+        <h2>On the track</h2>
+        <p className="mt-4 text-[#f2f2ee] leading-relaxed">
+          The bikes that come out of Artefactory are built to be ridden, and Alfonso has proven that on the circuit. He has raced at the 24 Horas Europeas de Lambretta, one of the most demanding endurance events in the classic scooter calendar, finishing second. The same engine work, the same frame preparation, the same attention to detail that goes into a race entry goes into every build that leaves the workshop.
+        </p>
+      </section>
+
       {videoUrl && (
         <section className="mb-12">
           <BuildVideo src={videoUrl} />

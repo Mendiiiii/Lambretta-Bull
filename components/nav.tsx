@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { MobileMenu } from '@/components/mobile-menu'
 
 const links = [
-  { href: '/', label: 'Bikes' },
+  { href: '/bikes', label: 'Bikes' },
   { href: '/configure', label: 'Custom build' },
   { href: '/about', label: 'About' },
   { href: '/import', label: 'How it gets to you' },

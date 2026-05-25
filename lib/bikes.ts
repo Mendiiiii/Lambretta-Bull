@@ -30,7 +30,7 @@ export const bikes: Bike[] = [
       handmadeComponents: ['Seat', 'Side panels', 'Exhaust'],
     },
     photos: [
-      { src: '/bikes/placeholder/hero.jpg', alt: '1966 TV 200, left side profile (placeholder)' },
+      { src: '/bikes/placeholder/li125-blue.jpg', alt: '1966 Lambretta Li125 Special, metallic blue' },
     ],
     available: true,
   },

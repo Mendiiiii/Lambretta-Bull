@@ -21,37 +21,23 @@ export default async function ImportPage() {
         </p>
       </header>
 
-      <section className="mb-12">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-[#cc2200]">Step 01</p>
-        <h2 className="mt-2">Pre-1989 historic exemption</h2>
-        <p className="mt-4 text-[#f2f2ee] leading-relaxed">
-          Every Lambre-Bull is built on a pre-1989 chassis, which qualifies the bike for the historic vehicle exemption from Australian Design Rules. This exemption means the bike is not required to meet current ADR compliance standards for a new vehicle registration. It is the same legal pathway used for classic cars and vintage motorcycles brought into Australia. You do not need to apply for the exemption yourself. We build specifically to this specification, so the qualification is built in from the start.
-        </p>
-      </section>
-
-      <section className="mb-12">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-[#cc2200]">Step 02</p>
-        <h2 className="mt-2">Import and customs</h2>
-        <p className="mt-4 text-[#f2f2ee] leading-relaxed">
-          The bike is crafted in Madrid and shipped by sea to an Australian port. Import duty and customs clearance are handled on arrival by our import agent. You are not required to lodge any paperwork with Australian Border Force or any other agency. We manage the broker, the duty payment, and the port release. Once the crate clears customs, we arrange delivery to the inspection site for the next step.
-        </p>
-      </section>
-
-      <section className="mb-12">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-[#cc2200]">Step 03</p>
-        <h2 className="mt-2">Blue Slip inspection</h2>
-        <p className="mt-4 text-[#f2f2ee] leading-relaxed">
-          Before the bike can be registered in New South Wales, it must pass an Authorised Unregistered Vehicle Inspection, commonly called a Blue Slip. The inspection confirms the vehicle is roadworthy and legally identifiable. We arrange the inspection with an approved station once the bike arrives in Sydney. If any minor items need attention, we sort them before the bike goes to registration. The buyer does not need to be present for the inspection.
-        </p>
-      </section>
-
-      <section className="mb-12">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-[#cc2200]">Step 04</p>
-        <h2 className="mt-2">Historic registration</h2>
-        <p className="mt-4 text-[#f2f2ee] leading-relaxed">
-          Once the Blue Slip is issued, we lodge the registration application with Service NSW under the historic vehicle category. This category is available for pre-1989 vehicles and comes with the characteristic yellow plates recognised by the classic vehicle community. Road use has some conditions attached, which we walk you through before handover. Registration is completed before delivery, so the bike arrives with plates and can be ridden from day one.
-        </p>
-      </section>
+      {[
+        { step: 'Step 01', title: 'Pre-1989 historic exemption', img: '/ilustraciones/step-01.png', body: 'Every Lambre-Bull is built on a pre-1989 chassis, which qualifies the bike for the historic vehicle exemption from Australian Design Rules. This exemption means the bike is not required to meet current ADR compliance standards for a new vehicle registration. It is the same legal pathway used for classic cars and vintage motorcycles brought into Australia. You do not need to apply for the exemption yourself. We build specifically to this specification, so the qualification is built in from the start.' },
+        { step: 'Step 02', title: 'Import and customs', img: '/ilustraciones/step-02.png', body: 'The bike is crafted in Madrid and shipped by sea to an Australian port. Import duty and customs clearance are handled on arrival by our import agent. You are not required to lodge any paperwork with Australian Border Force or any other agency. We manage the broker, the duty payment, and the port release. Once the crate clears customs, we arrange delivery to the inspection site for the next step.' },
+        { step: 'Step 03', title: 'Blue Slip and Historic Plates', img: '/ilustraciones/step-03.png', body: 'Before the bike can be registered in New South Wales, it must pass an Authorised Unregistered Vehicle Inspection, commonly called a Blue Slip. The inspection confirms the vehicle is roadworthy and legally identifiable. Once the Blue Slip is issued, we lodge the registration with Service NSW under the historic vehicle category. The bike comes out with the distinctive historic plates — recognised by every classic vehicle enthusiast in Australia.' },
+        { step: 'Step 04', title: 'Yours to ride', img: '/ilustraciones/step-04.png', body: 'Registration is completed before delivery. The bike arrives with plates, paperwork sorted, and ready to ride from day one. We handle every step of the process so you do not have to deal with government offices, customs forms, or inspection appointments. Your only job is to enjoy the bike.' },
+      ].map(({ step, title, img, body }) => (
+        <section key={step} className="mb-12 flex flex-col md:flex-row gap-6 md:items-start">
+          <div className="shrink-0 w-24 h-24 md:w-64 md:h-64">
+            <img src={img} alt={title} className="w-full h-full object-contain" />
+          </div>
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-[#cc2200]">{step}</p>
+            <h2 className="mt-2">{title}</h2>
+            <p className="mt-4 text-[#f2f2ee] leading-relaxed">{body}</p>
+          </div>
+        </section>
+      ))}
 
       <section className="mb-12">
         <h2>Common questions</h2>
